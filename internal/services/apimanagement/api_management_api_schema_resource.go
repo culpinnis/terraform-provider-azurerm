@@ -234,5 +234,9 @@ func convert2Str(rawVal interface{}) (string, error) {
 		}
 		value = string(val)
 	}
-	return value, nil
+	rt_value, err := strconv.Unquote(value)
+	if err != nil {
+		return "", fmt.Errorf("failed to unqoute value: %+v", err)
+	}
+	return rt_value, nil
 }
